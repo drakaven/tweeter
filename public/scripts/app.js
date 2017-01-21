@@ -8,15 +8,15 @@ $(document).ready(function() {
 
   $('#loader').hide();
 
-
-  $("#get").click(function() {
-    $.get("/tweets", function(data, status) {
-      console.log(data);
-      let newText = data[0].content.text;
-      console.log(newText)
-      $("#p1").text(newText);
-    });
-  });
+//get button
+  // $("#get").click(function() {
+  //   $.get("/tweets", function(data, status) {
+  //     console.log(data);
+  //     let newText = data[0].content.text;
+  //     console.log(newText)
+  //     $("#p1").text(newText);
+  //   });
+  // });
 
 
   // $('#form1').on('submit', function(event) {

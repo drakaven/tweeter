@@ -35,8 +35,10 @@ module.exports = function(db) {
     //add one
     db.collection("tweets").insertOne(tweet, (err, result) => {
       //the tweet value is ops not just result;
-      //res.json(result);
-      res.json(result.ops)
+      //we are not actually inteterested in a single return :(
+      //res.json(result.ops)
+      res.json(result);
+
     });
   });
 
