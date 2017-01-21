@@ -6,6 +6,9 @@
 
 $(document).ready(function() {
 
+  $('#loader').hide();
+
+
   $("#get").click(function() {
     $.get("/tweets", function(data, status) {
       console.log(data);
@@ -16,14 +19,47 @@ $(document).ready(function() {
   });
 
 
-  $('#form1').on('submit', function(event) {
+  // $('#form1').on('submit', function(event) {
+  //   event.preventDefault();
+  //   let newData = $(this).serialize();
+  //   $.post("/tweets",
+  //     newData,
+  //     //success callback
+  //     function(data, status) {
+  //     console.log(data);
+  //     $("#p2").text(data[0].content.text);
+  //     });
+  // });
+
+jQuery.ajaxSetup({
+  beforeSend: function() {
+     $('#loader').show();
+  },
+  complete: function(){
+     $('#loader').hide();
+  },
+  success: function() {}
+});
+
+//this is what the demo looks like calling them all back after an addition
+$('#form1').on('submit', function(event) {
     event.preventDefault();
     let newData = $(this).serialize();
     $.post("/tweets",
       newData,
+      //success callback
       function(data, status) {
+      $.get("/tweets", function(data, status) {
+
+      let newText = "";
       console.log(data);
-      $("#p2").text(data[0].content.text);
+      data.forEach((item) =>{
+      newText += item.content.text;
       });
+      $("#p2").text(newText);
+    });
   });
+});
+
+//doc ready end
 });

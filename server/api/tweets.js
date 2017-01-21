@@ -32,6 +32,7 @@ module.exports = function(db) {
       },
       created_at: Date.now()
     };
+    //add one
     db.collection("tweets").insertOne(tweet, (err, result) => {
       //the tweet value is ops not just result;
       //res.json(result);
